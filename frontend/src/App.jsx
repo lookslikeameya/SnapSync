@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Gallery from "./pages/Gallery";
+import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Upload from "./pages/Upload";
 import OmniportSuccess from "./pages/OmniportSuccess";
@@ -27,6 +28,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Upload />
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/favorites"
+          element={
+            <ProtectedRoute>
+              <Favorites />
             </ProtectedRoute>
           }
         />

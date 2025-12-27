@@ -168,6 +168,24 @@ class PhotoViewSet(viewsets.ModelViewSet):
         {"message": "Photo removed to favorites"},
         status=status.HTTP_200_OK
         )
+    
+#to get the favourite photos of a user
+    @action(
+    detail=False,
+    methods=["get"],
+    permission_classes=[IsAuthenticated,IsVerified]
+    )
+    def favorites(self, request):
+        #using the related anmes in favorited by filed of photo model
+        photos = request.user.favorite_photos.all().order_by("-photo_id")
+        page = self.paginate_queryset(photos)
+        if page is not None:
+            serializer = PhotoListSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = PhotoListSerializer(photos, many=True)
+        return Response(serializer.data)
+
 
     
 

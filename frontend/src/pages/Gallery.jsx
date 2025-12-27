@@ -9,10 +9,11 @@ export default function Gallery() {
   const [tagInput, setTagInput] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
-  //loading comments
+  //comments
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
-  
+  //favorite
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const fetchPhotos = async () => {
     try {
@@ -109,7 +110,7 @@ export default function Gallery() {
     if (!commentInput.trim()) return;
 
     try {
-      
+
 
       await api.post(
         `/photos/${selectedPhoto.photo_id}/comments/`,
@@ -127,6 +128,34 @@ export default function Gallery() {
       setCommentLoading(false);
     }
   };
+  //fetch isfavorite
+  useEffect(() => {
+    if (!selectedPhoto) return;
+
+    // TEMP logic: infer favorite state from backend later
+    setIsFavorite(selectedPhoto.is_favorite);
+  }, [selectedPhoto]);
+  //handle favorite and un favorite
+  const handleFavorite = async () => {
+    try {
+      await api.post(`/photos/${selectedPhoto.photo_id}/favorite/`);
+      setIsFavorite(true);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleUnfavorite = async () => {
+    try {
+      await api.post(`/photos/${selectedPhoto.photo_id}/unfavorite/`);
+      setIsFavorite(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
 
 
 
@@ -186,7 +215,15 @@ export default function Gallery() {
               alt=""
             />
 
+            {/* FAV */}
+            <button
+              className="favorite-btn"
+              onClick={isFavorite ? handleUnfavorite : handleFavorite}
+            >
+              {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
+            </button>
             {/* TAGS */}
+
             <div className="tags">
               {selectedPhoto.tags?.map(tag => (
                 <span key={tag.id} className="tag">
