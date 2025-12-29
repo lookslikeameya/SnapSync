@@ -124,9 +124,7 @@ export default function Gallery() {
         } catch (err) {
             console.error("Failed to post comment", err);
             alert("Failed to add comment");
-        } finally {
-            setCommentLoading(false);
-        }
+        } 
     };
     //fetch isfavorite
     useEffect(() => {
@@ -199,97 +197,101 @@ export default function Gallery() {
 
 
             {/* MODAL */}
-            {selectedPhoto && (
-                <div
-                    className="modal-overlay"
-                    onClick={() => setSelectedPhoto(null)}
-                >
-                    <div
-                        className="modal-content"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <img
-                            src={selectedPhoto.watermark_img}
-                            className="modal-image"
-                            alt=""
-                        />
+      {selectedPhoto && (
+        <div
+          className="modal-overlay"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="modal-body">
 
-                        {/* FAV */}
-                        <button
-                            className="favorite-btn"
-                            onClick={isFavorite ? handleUnfavorite : handleFavorite}
-                        >
-                            {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
-                        </button>
-                        {/* TAGS */}
+              <img
+                src={selectedPhoto.original_img}
+                className="modal-image"
+                alt=""
+              />
 
-                        <div className="tags">
-                            {selectedPhoto.tags?.map(tag => (
-                                <span key={tag.id} className="tag">
-                                    {tag.name}
-                                    <button onClick={() => removeTag(tag.name)}>×</button>
-                                </span>
-                            ))}
-                        </div>
+              {/* FAV */}
+              <button
+                className="favorite-btn"
+                onClick={isFavorite ? handleUnfavorite : handleFavorite}
+              >
+                {isFavorite ? "★ Favorited" : "☆ Add to Favorites"}
+              </button>
+              {/* TAGS */}
 
-                        {/* COMMENTS */}
-                        <div className="comments-section">
-                            <h4>Comments</h4>
+              <div className="tags">
+                {selectedPhoto.tags?.map(tag => (
+                  <span key={tag.id} className="tag">
+                    {tag.name}
+                    <button onClick={() => removeTag(tag.name)}>×</button>
+                  </span>
+                ))}
+              </div>
 
-                            <div className="comments-list">
-                                {comments.length === 0 && (
-                                    <p className="no-comments">No comments yet</p>
-                                )}
+              {/* COMMENTS */}
+              <div className="comments-section">
+                <h4>Comments</h4>
 
-                                {comments.map((comment) => (
-                                    <div key={comment.id} className="comment">
-                                        <strong>{comment.user}</strong>
-                                        <p>{comment.content}</p>
-                                        <span className="comment-time">
-                                            {new Date(comment.created_at).toLocaleString()}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                <div className="comments-list">
+                  {comments.length === 0 && (
+                    <p className="no-comments">No comments yet</p>
+                  )}
 
-
-
-                        {/* tags INPUT (ENTER ONLY) */}
-                        <input
-                            className="tag-input"
-                            placeholder="Add tag and press Enter"
-                            value={tagInput}
-                            onChange={(e) => setTagInput(e.target.value)}
-                            onKeyDown={handleTagKeyDown}
-                            autoFocus
-                        />
-                        {/* Comments INPUT (ENTER ONLY) */}
-                        <div className="comment-input">
-                            <input
-                                type="text"
-                                placeholder="Add a comment..."
-                                value={commentInput}
-                                onChange={(e) => setCommentInput(e.target.value)}
-                                onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
-                            />
-
-
-                        </div>
-                        <button
-                            onClick={() =>
-                                window.location.href =
-                                `http://127.0.0.1:8000/api/photos/${selectedPhoto.photo_id}/download/`
-                            }
-                        >
-                            Download
-                        </button>
-
-
-
+                  {comments.map((comment) => (
+                    <div key={comment.id} className="comment">
+                      <strong>{comment.user}</strong>
+                      <p>{comment.content}</p>
+                      <span className="comment-time">
+                        {new Date(comment.created_at).toLocaleString()}
+                      </span>
                     </div>
+                  ))}
                 </div>
-            )}
+              </div>
+
+
+
+              {/* tags INPUT (ENTER ONLY) */}
+              <input
+                className="tag-input"
+                placeholder="Add tag and press Enter"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={handleTagKeyDown}
+                autoFocus
+              />
+              {/* Comments INPUT (ENTER ONLY) */}
+              <div className="comment-input">
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  value={commentInput}
+                  onChange={(e) => setCommentInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
+                />
+
+
+              </div>
+              <button
+                onClick={() =>
+                  window.location.href =
+                  `http://127.0.0.1:8000/api/photos/${selectedPhoto.photo_id}/download/`
+                }
+              >
+                Download
+              </button>
+
+
+
+
+            </div>
+          </div>
         </div>
-    );
+      )}
+        </div>
+      );
 }

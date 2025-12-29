@@ -6,8 +6,8 @@ from .models import Photo, Tag, PhotoFavorite
 from .serializers import PhotoSerializer,PhotoListSerializer, TagSerializer
 
 from rest_framework.permissions import IsAuthenticated
-from accounts.permissions import IsVerified, IsPhotographer,IsAdmin,IsImgMember,IsCoordinator
-
+from accounts.permissions import IsVerified, IsPhotographer,IsAdmin, IsNotGuest
+from django.http import FileResponse
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
@@ -75,7 +75,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
 
         created_photos = []
 
-        from photos.tasks import generate_thumbnail, generate_watermark
+        from photos.tasks import generate_thumbnail
         from celery import chain
 
         for file in files:
@@ -86,10 +86,10 @@ class PhotoViewSet(viewsets.ModelViewSet):
             )
 
             # async processing per photo
-            chain(
-                generate_thumbnail.s(photo.photo_id),
-                generate_watermark.s()
-            ).delay()
+            # chain(
+            generate_thumbnail.delay(photo.photo_id),
+            #     # generate_watermark.s()
+            # ).delay()
 
             created_photos.append(photo.photo_id)
 
@@ -109,14 +109,14 @@ class PhotoViewSet(viewsets.ModelViewSet):
         if self.request.method == "DELETE":
             return [IsAuthenticated(), IsAdmin()]
 
-        # PHOTOGRAPHER-ONLY UPLOAD
-        if self.request.method == "POST":
-            return [IsAuthenticated(), IsVerified(), IsPhotographer()]
+        # # PHOTOGRAPHER-ONLY UPLOAD
+        # if self.request.method == "POST":
+        #     return [IsAuthenticated(), IsVerified(), IsPhotographer()]
 
         return super().get_permissions()    
 
     #Add tag
-    @action(detail=True, methods=["post"])
+    @action(detail=True, methods=["post"],permission_classes=[IsAuthenticated,IsVerified,IsNotGuest])
     def add_tag(self, request, pk=None):
         photo = self.get_object()
         tag_name = request.data.get("tag")
@@ -127,7 +127,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
         return Response({"message": "Tag added"})
 
     #Remove tag
-    @action(detail=True, methods=["post"])
+    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated,IsVerified,IsNotGuest])
     def remove_tag(self, request, pk=None):
         photo = self.get_object()
         tag_name = request.data.get("tag")
@@ -141,7 +141,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
         return Response({"message": "Tag removed"})
     
 
-    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
+    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated, IsVerified])
     def favorite(self, request, pk=None):
         photo = self.get_object()
 
@@ -155,7 +155,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
         status=status.HTTP_200_OK
         )
     
-    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated])
+    @action(detail=True, methods=["post"], permission_classes=[IsAuthenticated,IsVerified])
     def unfavorite(self, request, pk=None):
         photo = self.get_object()
 
@@ -184,26 +184,23 @@ class PhotoViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = PhotoListSerializer(photos, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data) 
 
-    #add download endpoint(everyone except guest)
-    from django.http import FileResponse
+
+    # Download endpoint
     @action(
-    detail=True,
-    methods=["get"],
-    permission_classes=[
-        IsAuthenticated,
-        IsImgMember,IsAdmin,IsPhotographer,IsCoordinator  # 👈 your custom permission
-    ]
-    
+        detail=True,
+        methods=["get"],
+        permission_classes=[
+            IsAuthenticated,IsVerified,IsNotGuest
+        ]
     )
-    
     def download(self, request, pk=None):
         photo = self.get_object()
 
-        
+        # permission already passed → serve original
         if photo.original_img:
-            return self.FileResponse(
+            return FileResponse(
                 photo.original_img.open("rb"),
                 as_attachment=True,
                 filename=f"photo_{photo.photo_id}_original.jpg"
@@ -213,7 +210,3 @@ class PhotoViewSet(viewsets.ModelViewSet):
             {"error": "Original image not available"},
             status=status.HTTP_404_NOT_FOUND
         )
-    
-
-
-   

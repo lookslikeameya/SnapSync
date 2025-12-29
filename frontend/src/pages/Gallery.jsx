@@ -124,9 +124,7 @@ export default function Gallery() {
     } catch (err) {
       console.error("Failed to post comment", err);
       alert("Failed to add comment");
-    } finally {
-      setCommentLoading(false);
-    }
+    } 
   };
   //fetch isfavorite
   useEffect(() => {
@@ -212,7 +210,7 @@ export default function Gallery() {
             <div className="modal-body">
 
               <img
-                src={selectedPhoto.watermark_img}
+                src={selectedPhoto.original_img}
                 className="modal-image"
                 alt=""
               />
