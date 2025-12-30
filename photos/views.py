@@ -48,7 +48,7 @@ class PhotoViewSet(viewsets.ModelViewSet):
     @action(
     detail=False,
     methods=["post"],
-    permission_classes=[IsAuthenticated, IsVerified, IsPhotographer]
+    permission_classes=[IsAuthenticated, IsVerified, IsNotGuest]
     )
 
     def batch_upload(self, request):

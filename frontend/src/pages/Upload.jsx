@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import "./Upload.css";
+import { useNavigate } from "react-router-dom";
 
 function Upload() {
+    const navigate = useNavigate();
     const [files, setFiles] = useState([]);
     const [previews, setPreviews] = useState([]);
 
@@ -11,6 +13,54 @@ function Upload() {
     // const [metadata, setMetadata] = useState("");
     const [loading, setLoading] = useState(false);
     const [tags, setTags] = useState("")
+    //drag nd drop
+    const [dragActive, setDragActive] = useState(false);
+    //tag users
+    const [users, setUsers] = useState([]);
+    const [taggedUsers, setTaggedUsers] = useState([]);
+    const fetchUsers = async () => {
+        const res = await api.get("/accounts/users/");
+        // console.log(res.data);
+        setUsers(res.data);
+    };
+    useEffect(() => {
+
+        fetchUsers();
+
+    }, []);
+
+
+
+
+
+
+
+
+    //handle drag and drop
+    const handleDragOver = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(true);
+    };
+
+    const handleDragLeave = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+
+        const droppedFiles = Array.from(e.dataTransfer.files);
+        if (droppedFiles.length === 0) return;
+
+        setFiles(droppedFiles);
+        setPreviews(droppedFiles.map(file => URL.createObjectURL(file)));
+    };
+
 
     // fetch albums
     useEffect(() => {
@@ -66,11 +116,22 @@ function Upload() {
                     await api.post(`/photos/${photoId}/add_tag/`, { tag });
                 }
             }
+            for (let photoId of photoIds) {
+                for (let userId of taggedUsers) {
+                    await api.post(
+                        `/photos/${photoId}/add_user_tag/`,
+                        { user_id: userId }
+                    );
+                }
+            }
+
 
             alert("Batch upload started!");
             setFiles([]);
             setPreviews([]);
             setTags("");
+            setTaggedUsers([]);
+            setTimeout(() => navigate("/gallery"), 0);
 
         } catch (err) {
             console.error(err);
@@ -83,7 +144,12 @@ function Upload() {
 
 
     return (
-        <div className="upload-container">
+        <div
+            className={`upload-container ${dragActive ? "drag-active" : ""}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+        >
             <form onSubmit={handleSubmit} className="upload-form">
                 <h2>Upload Photo</h2>
 
@@ -94,13 +160,11 @@ function Upload() {
                     onChange={handleFileChange}
                 />
 
-
                 <div className="preview-grid">
                     {previews.map((src, i) => (
                         <img key={i} src={src} className="preview" alt="preview" />
                     ))}
                 </div>
-
 
                 <select value={album} onChange={(e) => setAlbum(e.target.value)}>
                     <option value="">Select album</option>
@@ -110,6 +174,22 @@ function Upload() {
                         </option>
                     ))}
                 </select>
+                <select
+                    multiple
+                    value={taggedUsers}
+                    onChange={(e) =>
+                        setTaggedUsers(
+                            Array.from(e.target.selectedOptions, o => o.value)
+                        )
+                    }
+                >
+                    {users.map((u) => (
+                        <option key={u.id} value={u.id}>
+                            {u.email}
+                        </option>
+                    ))}
+                </select>
+
 
                 <input
                     type="text"
@@ -118,15 +198,12 @@ function Upload() {
                     onChange={(e) => setTags(e.target.value)}
                 />
 
-
-
-
-
                 <button disabled={loading}>
                     {loading ? "Uploading..." : "Upload"}
                 </button>
             </form>
         </div>
+
     );
 }
 
