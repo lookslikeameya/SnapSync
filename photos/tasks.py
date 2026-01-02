@@ -114,9 +114,9 @@ from django.db import transaction
 from .models import Photo, Tag
 
 
-@shared_task(queue="ml", bind=True, autoretry_for=(Exception,), retry_kwargs={"max_retries": 3, "countdown": 10})
-def auto_tag_photo(self, photo_id):
-    # 🔥 IMPORTS INSIDE TASK (CRITICAL)
+@shared_task(queue="ml")
+def auto_tag_photo(photo_id):
+    # imported inside ML worker for compatibility with the venv_ml
     import numpy as np
     from tensorflow.keras.applications.mobilenet_v2 import (
         MobileNetV2,
@@ -144,9 +144,9 @@ def auto_tag_photo(self, photo_id):
     preds = model.predict(img_array)
     decoded = decode_predictions(preds, top=5)[0]
 
-    with transaction.atomic():
-        for _, label, confidence in decoded:
-            tag, _ = Tag.objects.get_or_create(name=label)
-            photo.tags.add(tag)
+    
+    for _, label, confidence in decoded:
+        tag, _ = Tag.objects.get_or_create(name=label)
+        photo.tags.add(tag)
 
     return [label for _, label, _ in decoded]
