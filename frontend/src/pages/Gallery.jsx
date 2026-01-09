@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import "./Gallery.css";
 import { Drawer, Stack, Button, Box } from "@mui/material";
+import { useLocation,useNavigate } from "react-router-dom";
 
 export default function Gallery() {
   const [photos, setPhotos] = useState([]);
@@ -23,6 +24,15 @@ export default function Gallery() {
   const [searchTag, setSearchTag] = useState("");
   const [albums, setAlbums] = useState([]);
   const [album, setAlbum] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.album) {
+      setAlbum(location.state.album);
+      setView("photos");
+    }
+  }, [location.state]);
 
   // fetch albums
   useEffect(() => {
@@ -61,7 +71,11 @@ export default function Gallery() {
       if (album) params.push(`album=${album}`);
 
       if (params.length) url += `?${params.join("&")}`;
+
+      console.log(album);
+      console.log(view);
     }
+
 
 
     try {
@@ -253,142 +267,133 @@ export default function Gallery() {
   if (loading) return <p className="loading">Loading...</p>;
 
   return (
-  <div className="gallery-container">
+    <div className="gallery-container">
 
-    {/* SIDEBAR */}
-    <Drawer
-      variant="permanent"
-      sx={{
-        width: 200,
-        [`& .MuiDrawer-paper`]: {
+      {/* SIDEBAR */}
+      <Drawer
+        variant="permanent"
+        sx={{
           width: 200,
-          background: "#0f0f0f",
-          color: "#fff",
-          borderRight: "1px solid #222",
-        },
-      }}
-    >
-      <Stack spacing={2} sx={{ p: 2 }}>
-        <Button onClick={() => {
-          setView("photos");
-          setAlbum("");
-          setSearchTag("");
-          setTaggedUser("");
-        }}>Photos</Button>
-
-        <Button onClick={() => {
-          setView("albums");
-          setAlbum("");
-          setSearchTag("");
-          setTaggedUser("");
-        }}>Albums</Button>
-
-        <Button onClick={() => {
-          setView("favorites");
-          setAlbum("");
-          setSearchTag("");
-          setTaggedUser("");
-        }}>Favorites</Button>
-
-        <Button onClick={() => {
-          setView("tagged");
-          setAlbum("");
-          setSearchTag("");
-          setTaggedUser("");
-        }}>Tagged-in</Button>
-      </Stack>
-    </Drawer>
-
-    {/* ================= MAIN CONTENT ================= */}
-    <Box
-      sx={{
-        marginLeft: "200px",        // 🔑 OFFSET FOR DRAWER
-        padding: "24px",
-        minHeight: "100vh",
-        overflowY: "auto",
-      }}
-    >
-
-      {/* ALBUM VIEW */}
-      {view === "albums" && albums.map(album => (
-        <div
-          key={album.album_id}
-          className="album-card"
-          onClick={() => {
-            setAlbum(album.album_id);
+          [`& .MuiDrawer-paper`]: {
+            width: 200,
+            background: "#0f0f0f",
+            color: "#fff",
+            borderRight: "1px solid #222",
+          },
+        }}
+      >
+        <Stack spacing={2} sx={{ p: 2 }}>
+          <Button onClick={() => {
             setView("photos");
-          }}
-        >
-          {album.title}
-        </div>
-      ))}
+            setAlbum("");
+            setSearchTag("");
+            setTaggedUser("");
+          }}>Photos</Button>
 
-      {/* PHOTO VIEW */}
-      {view !== "albums" && (
-        <>
-          <div className="gallery-search">
-            <select value={album} onChange={(e) => setAlbum(e.target.value)}>
-              <option value="">Select album</option>
-              {albums.map((a) => (
-                <option key={a.album_id} value={a.album_id}>
-                  {a.title}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Button onClick={() => {
+            setView("albums");
+            setAlbum("");
+            setSearchTag("");
+            setTaggedUser("");
+          }}>Albums</Button>
 
-          <div className="gallery-search">
-            <input
-              className="search-input"
-              placeholder="Search by tag"
-              value={searchTag}
-              onChange={(e) => setSearchTag(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && fetchPhotos()}
-            />
-          </div>
+          <Button onClick={() => {
+            setView("favorites");
+            setAlbum("");
+            setSearchTag("");
+            setTaggedUser("");
+          }}>Favorites</Button>
 
-          <div className="gallery-search">
-            <input
-              placeholder="Search by tagged user email"
-              value={taggedUser}
-              onChange={(e) => setTaggedUser(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && fetchPhotos()}
-            />
-          </div>
+          <Button onClick={() => {
+            setView("tagged");
+            setAlbum("");
+            setSearchTag("");
+            setTaggedUser("");
+          }}>Tagged-in</Button>
+        </Stack>
+      </Drawer>
 
-          <div className="gallery-grid">
-            {photos.map(photo => (
-              <div
-                key={photo.photo_id}
-                className="gallery-card"
-                onClick={async () => {
-                  const res = await api.get(`/photos/${photo.photo_id}/`);
-                  setSelectedPhoto(res.data);
-                }}
-              >
-                <img
-                  src={photo.thumbnail_img}
-                  className="gallery-img"
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
+      {/* ================= MAIN CONTENT ================= */}
+      <Box
+        sx={{
+          marginLeft: "200px",        // 🔑 OFFSET FOR DRAWER
+          padding: "24px",
+          minHeight: "100vh",
+          overflowY: "auto",
+        }}
+      >
 
-          {nextPage && (
-            <div className="load-more-container">
-              <button
-                className="load-more-btn"
-                onClick={loadMorePhotos}
-                disabled={loadingMore}
-              >
-                {loadingMore ? "Loading..." : "Load more"}
-              </button>
-            </div>
+        {/* ALBUM VIEW */}
+        {view === "albums" &&  (
+          navigate("/albums")
           )}
-        </>
-      )}
-    </Box>
+
+        {/* PHOTO VIEW */}
+        {view !== "albums" && (
+          <>
+            <div className="gallery-search">
+              <select value={album} onChange={(e) => setAlbum(e.target.value)}>
+                <option value="">Select album</option>
+                {albums.map((a) => (
+                  <option key={a.album_id} value={a.album_id}>
+                    {a.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="gallery-search">
+              <input
+                className="search-input"
+                placeholder="Search by tag"
+                value={searchTag}
+                onChange={(e) => setSearchTag(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && fetchPhotos()}
+              />
+            </div>
+
+            <div className="gallery-search">
+              <input
+                placeholder="Search by tagged user email"
+                value={taggedUser}
+                onChange={(e) => setTaggedUser(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && fetchPhotos()}
+              />
+            </div>
+
+            <div className="gallery-grid">
+              {photos.map(photo => (
+                <div
+                  key={photo.photo_id}
+                  className="gallery-card"
+                  onClick={async () => {
+                    const res = await api.get(`/photos/${photo.photo_id}/`);
+                    setSelectedPhoto(res.data);
+                  }}
+                >
+                  <img
+                    src={photo.thumbnail_img}
+                    className="gallery-img"
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+
+            {nextPage && (
+              <div className="load-more-container">
+                <button
+                  className="load-more-btn"
+                  onClick={loadMorePhotos}
+                  disabled={loadingMore}
+                >
+                  {loadingMore ? "Loading..." : "Load more"}
+                </button>
+              </div>
+            )}
+          </>
+        )}
+      </Box>
 
 
 

@@ -1,25 +1,27 @@
-from rest_framework import viewsets
+from  rest_framework.viewsets import ModelViewSet
+
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Album
-from .serializers import AlbumSerializer
-from accounts.permissions import IsVerified, IsCoordinator, IsAdmin
+from .serializers import AlbumSerializer,AlbumListSerializer
+from accounts.permissions import IsVerified, IsCoordinator, IsAdmin, IsAdminOrCoordinator
 
+# albums/views.py
+class AlbumViewSet(ModelViewSet):
+    queryset = Album.objects.all().order_by("-created_at")
 
-class AlbumViewSet(viewsets.ModelViewSet):
-    queryset = Album.objects.all().order_by("-album_id")
-    serializer_class = AlbumSerializer
+    def get_serializer_class(self):
+        if self.action == "list":
+            return AlbumListSerializer
+        return AlbumSerializer
 
-    # DEFAULT: only authenticated + verified users can access
-    permission_classes = [IsAuthenticated, IsVerified]
-
-    # ADMIN-ONLY DELETE
-    # COORDINATOR-ONLY CREATE & UPDATE
     def get_permissions(self):
-        if self.request.method == "DELETE":
-            return [IsAuthenticated(), IsAdmin()]
+        if self.action in ["create", "destroy"]:
+            return [IsAdmin()]
+        if self.action in ["update", "partial_update"]:
+            return [IsAuthenticated(), IsAdminOrCoordinator()]
+        return [IsAuthenticated()]
 
-        if self.request.method in ["POST", "PUT", "PATCH"]:
-            return [IsAuthenticated(), IsVerified(), IsCoordinator()]
-
-        return super().get_permissions()
+    def perform_create(self, serializer):
+        
+        serializer.save(created_by=self.request.user)

@@ -32,6 +32,13 @@ class IsNotGuest(BasePermission):
                 request.user.roles.filter(name="Photographer").exists() or 
                 request.user.roles.filter(name="Admin").exists()     
                 )
+class IsAdminOrCoordinator(BasePermission):
+    def has_permission(self, request, view):
+        return (
+                request.user.roles.filter(name="Event Coordinator").exists() or
+               
+                request.user.roles.filter(name="Admin").exists()     
+                )
 
 
 class ReadOnlyForGuests(BasePermission):

@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Gallery from "./pages/Gallery";
-import Favorites from "./pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Upload from "./pages/Upload";
 import OmniportSuccess from "./pages/OmniportSuccess";
-import Tagged from "./pages/Tagged";
+
 import SignUp from "./pages/SignUp";
 import VerifyOtp from "./pages/VerifyOtp";
+import Albums from "./pages/Albums";
 
 
 
@@ -29,6 +29,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+         <Route
+          path="/albums"
+          element={
+            <ProtectedRoute>
+              <Albums />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="/upload"
@@ -38,22 +46,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-         <Route
-          path="/favorites"
-          element={
-            <ProtectedRoute>
-              <Favorites />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/tagged"
-          element={
-            <ProtectedRoute>
-              <Tagged />
-            </ProtectedRoute>
-          }
-        />
+         
         <Route path="/omniport-success" element={<OmniportSuccess />} />
       </Routes>
     </BrowserRouter>

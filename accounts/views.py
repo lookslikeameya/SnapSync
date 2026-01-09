@@ -1,11 +1,18 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import RegisterSerializer, VerifyOTPSerializer, LoginSerializer
+from .serializers import RegisterSerializer, VerifyOTPSerializer, LoginSerializer,GetRoleSerializer
 from rest_framework.permissions import IsAuthenticated
 from .permissions import IsVerified,IsNotGuest
 from django.contrib.auth import get_user_model
 
+
+#get role
+class GetRoleView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        serializer = GetRoleSerializer(request.user)
+        return Response(serializer.data)
 #get user list
 User=get_user_model()
 class UserListView(APIView):
@@ -14,6 +21,17 @@ class UserListView(APIView):
         users=User.objects.all().values("id","email")
         return Response(users)
 
+#get event coordinators list
+class EventCoordinatorsListView(APIView):
+    permission_classes=[IsAuthenticated,IsVerified,IsNotGuest]
+    def get(self,request):
+        from .models import Role
+        try:
+            event_coordinator_role = Role.objects.get(name="Event Coordinator")
+            users = User.objects.filter(roles=event_coordinator_role).values("id","email")
+            return Response(users)
+        except Role.DoesNotExist:
+            return Response([])
 
 
 class RegisterAPIView(APIView):

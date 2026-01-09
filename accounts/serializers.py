@@ -4,7 +4,19 @@ from rest_framework import serializers
 from .models import User, EmailOTP
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth import get_user_model
 
+User = get_user_model()
+
+class GetRoleSerializer(serializers.ModelSerializer):
+    roles = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "roles",
+        ]
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
