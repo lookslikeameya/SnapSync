@@ -9,6 +9,10 @@ from rest_framework.permissions import IsAuthenticated
 from accounts.permissions import IsVerified, IsPhotographer, IsAdmin, IsNotGuest
 from django.http import FileResponse
 from django.contrib.auth import get_user_model
+import logging
+from notifications.utils import create_notification
+
+logger = logging.getLogger(__name__)
 
 User = get_user_model()
 
@@ -174,7 +178,18 @@ class PhotoViewSet(viewsets.ModelViewSet):
     def favorite(self, request, pk=None):
         photo = self.get_object()
 
-        PhotoFavorite.objects.get_or_create(user=request.user, photo=photo)
+        _, created = PhotoFavorite.objects.get_or_create(user=request.user, photo=photo)
+
+        if created and photo.uploaded_by != request.user:
+            try:
+                create_notification(
+                    recipient=photo.uploaded_by,
+                    actor=request.user,
+                    message=f"{request.user.username} liked your photo",
+                    target=photo,
+                )
+            except Exception as exc:
+                logger.exception("Failed to create notification for favorite: %s", exc)
 
         return Response(
             {"message": "Photo added to favorites"}, status=status.HTTP_200_OK
@@ -314,6 +329,16 @@ class PhotoViewSet(viewsets.ModelViewSet):
         try:
             user = User.objects.get(id=user_id)
             photo.users_tagged.add(user)
+            # if user != request.user:
+            try:
+                    create_notification(
+                        recipient=user,
+                        actor=request.user,
+                        message=f"{request.user.username} tagged you in a photo",
+                        target=photo,
+                    )
+            except Exception as exc:
+                    logger.exception("Failed to create notification for tag: %s", exc)
         except User.DoesNotExist:
             return Response(
                 {"error": "User not found"}, status=status.HTTP_404_NOT_FOUND

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import "./Upload.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Upload() {
     const navigate = useNavigate();
@@ -320,37 +321,7 @@ function Upload() {
     return (
         <>
             {/* NAVBAR */}
-            <nav className="navbar">
-                <div className="navbar-content">
-                    <h1 className="navbar-logo">Smart Event Photos</h1>
-                    <div className="navbar-links">
-                        <button 
-                            className="navbar-btn"
-                            onClick={() => navigate("/gallery")}
-                        >
-                            Gallery
-                        </button>
-                        <button 
-                            className="navbar-btn active"
-                            onClick={() => navigate("/upload")}
-                        >
-                            Photographer Dashboard
-                        </button>
-                        <button 
-                            className="navbar-btn"
-                            onClick={() => navigate("/profile")}
-                        >
-                            Profile
-                        </button>
-                        <button 
-                            className="navbar-btn logout-btn"
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            </nav>
+            <Navbar active="upload" />
 
             <div className="upload-container">
                 {/* DASHBOARD CARDS */}

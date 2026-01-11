@@ -9,9 +9,6 @@ import SignUp from "./pages/SignUp";
 import VerifyOtp from "./pages/VerifyOtp";
 import Albums from "./pages/Albums";
 import Profile from "./pages/Profile";
-
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -30,7 +27,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/albums"
           element={
             <ProtectedRoute>
@@ -56,7 +53,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-         
+
         <Route path="/omniport-success" element={<OmniportSuccess />} />
       </Routes>
     </BrowserRouter>

@@ -3,6 +3,7 @@ import api from "../services/api";
 import "./Gallery.css";
 import { Drawer, Stack, Button, Box } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 export default function Gallery() {
   const [photos, setPhotos] = useState([]);
@@ -297,41 +298,7 @@ export default function Gallery() {
   return (
     <div className="gallery-container">
       {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="navbar-content">
-          <h1 className="navbar-logo">Smart Event Photos</h1>
-          <div className="navbar-links">
-            <button
-              className="navbar-btn active"
-              onClick={() => navigate("/gallery")}
-            >
-              Gallery
-            </button>
-            {(IsAdmin || IsPhotographer) && (
-              <button
-                className="navbar-btn"
-                onClick={() => navigate("/upload")}
-              >
-                Photographer Dashboard
-              </button>
-            )}
-
-            <button
-              className="navbar-btn"
-              onClick={() => navigate("/profile")}
-            >
-              Profile
-            </button>
-            <button
-              className="navbar-btn logout-btn"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </nav>
-
+      <Navbar active="gallery" />
       {/* SIDEBAR */}
       <Drawer
         variant="permanent"

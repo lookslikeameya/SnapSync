@@ -7,6 +7,10 @@ from accounts.permissions import IsVerified
 from photos.models import Photo
 from .models import Comment
 from .serializers import CommentSerializer
+import logging
+from notifications.utils import create_notification
+
+logger = logging.getLogger(__name__)
 
 
 class CommentView(APIView):
@@ -35,6 +39,17 @@ class CommentView(APIView):
             photo=photo,
             content=content
         )
+        if photo.uploaded_by != request.user:
+            try:
+                    create_notification(
+                        recipient=photo.uploaded_by,
+                        actor=request.user,
+                        message=f"{request.user.username} commented on your photo",
+                        target=photo,
+                    )
+            except Exception as exc:
+                    logger.exception("Failed to create notification for comment: %s", exc)
+
 
         serializer = CommentSerializer(comment)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -21,11 +21,13 @@ from rest_framework.routers import DefaultRouter
 from albums.views import AlbumViewSet
 from photos.views import PhotoViewSet, TagViewSet
 from comments.views import CommentView
+from notifications.views import NotificationViewSet 
 
 router = DefaultRouter()
 router.register("albums", AlbumViewSet)
 router.register("photos", PhotoViewSet)
 router.register("tags", TagViewSet)
+router.register("notifications", NotificationViewSet, basename="notifications")
 
 
 urlpatterns = [

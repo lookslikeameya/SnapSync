@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "./Profile.css";
+import Navbar from "../components/Navbar";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -54,40 +55,7 @@ export default function Profile() {
         return (
             <div className="profile-container">
                 {/* NAVBAR */}
-                <nav className="navbar">
-                    <div className="navbar-content">
-                        <h1 className="navbar-logo">Smart Event Photos</h1>
-                        <div className="navbar-links">
-                            <button
-                                className="navbar-btn"
-                                onClick={() => navigate("/gallery")}
-                            >
-                                Gallery
-                            </button>
-                            {(IsAdmin || IsPhotographer) && (
-                                <button
-                                    className="navbar-btn"
-                                    onClick={() => navigate("/upload")}
-                                >
-                                    Photographer Dashboard
-                                </button>
-                            )}
-
-                            <button
-                                className="navbar-btn active"
-                                onClick={() => navigate("/profile")}
-                            >
-                                Profile
-                            </button>
-                            <button
-                                className="navbar-btn logout-btn"
-                                onClick={handleLogout}
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    </div>
-                </nav>
+                <Navbar active="profile" />
                 <p>Unable to load profile</p>
                 <button onClick={() => navigate("/gallery")}>Go Back</button>
             </div>
@@ -97,40 +65,7 @@ export default function Profile() {
     return (
         <div className="profile-container">
             {/* NAVBAR */}
-            <nav className="navbar">
-                <div className="navbar-content">
-                    <h1 className="navbar-logo">Smart Event Photos</h1>
-                    <div className="navbar-links">
-                        <button
-                            className="navbar-btn"
-                            onClick={() => navigate("/gallery")}
-                        >
-                            Gallery
-                        </button>
-                        {(IsAdmin || IsPhotographer) && (
-                            <button
-                                className="navbar-btn"
-                                onClick={() => navigate("/upload")}
-                            >
-                                Photographer Dashboard
-                            </button>
-                        )}
-
-                        <button
-                            className="navbar-btn active"
-                            onClick={() => navigate("/profile")}
-                        >
-                            Profile
-                        </button>
-                        <button
-                            className="navbar-btn logout-btn"
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            </nav>
+            <Navbar active="profile" />
             <div className="profile-card">
                 <h2>User Profile</h2>
 

@@ -27,10 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     "django_celery_results",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'photos',
     'comments',
     "corsheaders",
+    "notifications",
+    "channels"
 ]
 
 MIDDLEWARE = [
@@ -192,3 +194,14 @@ CELERY_RESULT_BACKEND = "django-db"
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+#for Asgi configuration
+ASGI_APPLICATION = "backend.asgi.application"
+#configure channels layer
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6380)],
+        },
+    }
+}
