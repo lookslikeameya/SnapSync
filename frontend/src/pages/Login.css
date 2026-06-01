@@ -7,7 +7,7 @@
 
 .login-box {
   width: 320px;
-  background: #2a2a2a;
+  background: #18222c;
   padding: 24px;
   border-radius: 8px;
 }
@@ -29,7 +29,7 @@
 .login-box button {
   width: 100%;
   padding: 10px;
-  background: #4f46e5;
+  background: #168484;
   border: none;
   color: white;
   border-radius: 5px;
@@ -37,12 +37,12 @@
 }
 
 .login-box button:hover {
-  background: #4338ca;
+  background: #0e5959;
 }
 .divider {
   margin: 16px 0;
   text-align: center;
-  color: #999;
+  color: #94a3b8;
   font-size: 14px;
 }
 
@@ -54,9 +54,9 @@
   gap: 10px;
 
   padding: 12px;
-  background-color: #111;
+  background-color: #0f171e;
   color: white;
-  border: 1px solid #333;
+  border: 1px solid #1e293b;
   border-radius: 8px;
 
   font-size: 15px;
@@ -65,7 +65,7 @@
 }
 
 .omniport-btn:hover {
-  background-color: #1a1a1a;
+  background-color: #18222c;
   transform: translateY(-1px);
 }
 

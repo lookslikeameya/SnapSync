@@ -76,7 +76,7 @@ export default function Navbar({ active }) {
     }
   };
 
-  
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (Open && !e.target.closest("[aria-label='Notifications']")) {
@@ -99,7 +99,10 @@ export default function Navbar({ active }) {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        <h1 className="navbar-logo">SnapSync</h1>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <img src="/logo.png" alt="Logo" style={{ height: 36, width: "auto" }} />
+          <h1 className="navbar-logo" style={{ margin: 0 }}>SnapSync</h1>
+        </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{ position: "relative" }}>
@@ -125,13 +128,13 @@ export default function Navbar({ active }) {
             </button>
 
             {Open && (
-              <div style={{ position: "absolute", right: 0, top: 28, width: 360, maxHeight: 420, overflow: "auto", background: "white", boxShadow: "0 4px 12px rgba(0,0,0,0.15)", borderRadius: 6, zIndex: 1000 }}>
-                <div style={{ padding: 8, borderBottom: "1px solid #eee", fontWeight: 600 }}>Notifications</div>
-                {notifications.length === 0 && <div style={{ padding: 12 }}>No notifications</div>}
+              <div style={{ position: "absolute", right: 0, top: 28, width: 360, maxHeight: 420, overflow: "auto", background: "#18222c", boxShadow: "0 4px 12px rgba(0,0,0,0.5)", borderRadius: 6, zIndex: 1000, border: "1px solid #1e293b", color: "#f1f5f9" }}>
+                <div style={{ padding: 12, borderBottom: "1px solid #168484", fontWeight: 600, color: "#f1f5f9" }}>Notifications</div>
+                {notifications.length === 0 && <div style={{ padding: 12, color: "#94a3b8" }}>No notifications</div>}
                 {notifications.map((n) => (
-                  <div key={n.id} style={{ padding: 10, borderBottom: "1px solid #f5f5f5", background: n.is_read ? "#fff" : "#f8f9fb", cursor: "pointer" }} onClick={() => markRead(n.id)}>
-                    <div style={{ fontSize: 14, color: "#111", fontWeight: n.is_read ? "normal" : "bold" }}>{n.message}</div>
-                    <div style={{ fontSize: 12, color: "#666" }}>{new Date(n.created_at).toLocaleString()}</div>
+                  <div key={n.id} style={{ padding: 12, borderBottom: "1px solid #1e293b", background: n.is_read ? "transparent" : "rgba(22, 132, 132, 0.15)", cursor: "pointer", transition: "background 0.2s" }} onClick={() => markRead(n.id)}>
+                    <div style={{ fontSize: 14, color: n.is_read ? "#f1f5f9" : "#ffffff", fontWeight: n.is_read ? "normal" : "600" }}>{n.message}</div>
+                    <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 4 }}>{new Date(n.created_at).toLocaleString()}</div>
                   </div>
                 ))}
               </div>

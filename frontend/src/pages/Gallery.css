@@ -1,6 +1,6 @@
 .gallery-container {
   padding: 24px;
-  background: #0f0f0f;
+  background: #0f171e;
   min-height: 100vh;
 }
 
@@ -11,8 +11,8 @@
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #1a1a1a;
-  border-bottom: 1px solid #333;
+  background-color: #18222c;
+  border-bottom: 1px solid #1e293b;
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -30,7 +30,7 @@
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #f1f5f9;
   margin: 0;
 }
 
@@ -41,7 +41,7 @@
 
 .navbar-btn {
   background: transparent;
-  color: #bbb;
+  color: #94a3b8;
   border: none;
   font-size: 14px;
   cursor: pointer;
@@ -52,13 +52,13 @@
 }
 
 .navbar-btn:hover {
-  color: #fff;
-  background-color: #333;
+  color: #f1f5f9;
+  background-color: #1e293b;
 }
 
 .navbar-btn.active {
-  color: #6200ea;
-  background-color: rgba(98, 0, 234, 0.1);
+  color: #168484;
+  background-color: rgba(22, 132, 132, 0.1);
 }
 
 .navbar-btn.logout-btn {
@@ -95,7 +95,7 @@
 }
 
 .gallery-card {
-  background: #1c1c1c;
+  background: #18222c;
   border-radius: 14px;
   padding: 10px;
   cursor: pointer;
@@ -134,7 +134,7 @@
 }
 
 .modal-content {
-  background: #1b1b1b;
+  background: #18222c;
   border-radius: 16px;
   max-width: 1000px;
   width: 95%;
@@ -158,7 +158,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0f0f0f;
+  background: #0f171e;
   border-radius: 12px;
   overflow: auto;
 }
@@ -182,14 +182,14 @@
   align-items: center;
   gap: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #1e293b;
   margin-bottom: 16px;
 }
 
 .action-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: #f1f5f9;
   font-size: 20px;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -197,7 +197,7 @@
 }
 
 .action-btn:hover {
-  color: #9c7edd;
+  color: #168484;
 }
 
 .favorite-btn.active {
@@ -226,7 +226,7 @@
 }
 
 .modal-scroll-content::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #1e293b;
   border-radius: 3px;
 }
 
@@ -243,7 +243,7 @@
   margin: 0 0 12px 0;
   font-size: 14px;
   font-weight: 600;
-  color: #ccc;
+  color: #94a3b8;
 }
 
 /* Select Field */
@@ -252,9 +252,9 @@
   padding: 10px 12px;
   margin-bottom: 8px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #888;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #94a3b8;
   font-size: 13px;
   cursor: pointer;
   outline: none;
@@ -262,12 +262,12 @@
 }
 
 .modal-select:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .modal-select option {
-  background: #1b1b1b;
-  color: #fff;
+  background: #18222c;
+  color: #f1f5f9;
 }
 
 /* Tag Button */
@@ -275,9 +275,9 @@
   width: 100%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #9c7edd;
-  background: #9c7edd;
-  color: #fff;
+  border: 1px solid #168484;
+  background: #168484;
+  color: #f1f5f9;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -285,8 +285,8 @@
 }
 
 .modal-tag-btn:hover:not(:disabled) {
-  background: #8a6cc9;
-  border-color: #8a6cc9;
+  background: #0e5959;
+  border-color: #0e5959;
 }
 
 .modal-tag-btn:disabled {
@@ -307,34 +307,34 @@
 }
 
 .comments-list::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #1e293b;
   border-radius: 2px;
 }
 
 .comment {
   padding: 8px 0;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #1e293b;
   margin-bottom: 8px;
 }
 
 .comment strong {
-  color: #9c7edd;
+  color: #168484;
   font-size: 12px;
 }
 
 .comment p {
   margin: 4px 0;
-  color: #ccc;
+  color: #94a3b8;
   font-size: 12px;
 }
 
 .comment-time {
   font-size: 11px;
-  color: #666;
+  color: #94a3b8;
 }
 
 .no-comments {
-  color: #666;
+  color: #94a3b8;
   font-size: 12px;
   margin: 0;
 }
@@ -349,24 +349,24 @@
   flex: 1;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #fff;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #f1f5f9;
   font-size: 12px;
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .modal-comment-input:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .modal-send-btn {
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid #9c7edd;
-  background: #9c7edd;
-  color: #fff;
+  border: 1px solid #168484;
+  background: #168484;
+  color: #f1f5f9;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -375,8 +375,8 @@
 }
 
 .modal-send-btn:hover {
-  background: #8a6cc9;
-  border-color: #8a6cc9;
+  background: #0e5959;
+  border-color: #0e5959;
 }
 
 /* Tags */
@@ -389,11 +389,11 @@
 }
 
 .tag {
-  background: #e8deff;
+  background: #134e4a;
   padding: 4px 10px;
   border-radius: 16px;
   font-size: 11px;
-  color: #333;
+  color: #f1f5f9;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -403,7 +403,7 @@
 .tag button {
   background: none;
   border: none;
-  color: #333;
+  color: #f1f5f9;
   cursor: pointer;
   padding: 0;
   font-size: 14px;
@@ -415,7 +415,7 @@
 }
 
 .no-tags {
-  color: #666;
+  color: #94a3b8;
   font-size: 12px;
   margin: 0;
 }
@@ -425,20 +425,20 @@
   width: 100%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #fff;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #f1f5f9;
   font-size: 12px;
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .modal-tag-input:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .loading {
-  color: white;
+  color: #f1f5f9;
   text-align: center;
   margin-top: 50px;
 }
@@ -456,9 +456,9 @@
 
 .load-more-btn {
   padding: 10px 18px;
-  background: #222;
-  color: #fff;
-  border: 1px solid #444;
+  background: #18222c;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -473,12 +473,12 @@
 
 .comment {
   padding: 6px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #1e293b;
 }
 
 .comment-time {
   font-size: 0.75rem;
-  color: #888;
+  color: #94a3b8;
 }
 
 .comment-input {
@@ -504,7 +504,7 @@
 }
 
 .comments-list::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #1e293b;
   border-radius: 4px;
 }
 
@@ -524,10 +524,10 @@
   padding: 10px 14px;
   font-size: 14px;
 
-  background-color: #121212;
-  color: #ffffff;
+  background-color: #0f171e;
+  color: #f1f5f9;
 
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
   border-radius: 8px;
 
   outline: none;
@@ -535,12 +535,12 @@
 }
 
 .gallery-search input::placeholder {
-  color: #888;
+  color: #94a3b8;
 }
 
 .gallery-search input:focus {
-  border-color: #4f46e5; /* subtle accent */
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
+  border-color: #168484; /* subtle accent */
+  box-shadow: 0 0 0 2px rgba(22, 132, 132, 0.25);
 }
 
 /* ALBUM DETAILS SECTION */
@@ -553,10 +553,10 @@
   grid-template-columns: 280px 1fr;
   gap: 24px;
   align-items: center;
-  background: linear-gradient(135deg, #222 0%, #1a1a1a 100%);
+  background: linear-gradient(135deg, #18222c 0%, #0f171e 100%);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #333;
+  border: 1px solid #1e293b;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   padding: 24px;
 }
@@ -570,7 +570,7 @@
 }
 
 .album-detail-info {
-  color: #fff;
+  color: #f1f5f9;
 }
 
 .album-detail-info h1 {
@@ -582,7 +582,7 @@
 .album-detail-description {
   margin: 0 0 16px 0;
   font-size: 15px;
-  color: #ccc;
+  color: #94a3b8;
   line-height: 1.6;
   max-width: 600px;
 }
@@ -590,13 +590,13 @@
 .album-detail-date {
   display: block;
   font-size: 13px;
-  color: #999;
+  color: #94a3b8;
   margin-bottom: 16px;
 }
 
 .change-album-btn {
-  background: #6200ea;
-  color: #fff;
+  background: #168484;
+  color: #f1f5f9;
   border: none;
   padding: 10px 24px;
   border-radius: 8px;
@@ -607,9 +607,9 @@
 }
 
 .change-album-btn:hover {
-  background: #7c3aed;
+  background: #0e5959;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(98, 0, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(22, 132, 132, 0.3);
 }
 
 .album-detail-card.all-photos {
@@ -625,7 +625,7 @@
 .album-detail-card.all-photos h1 {
   font-size: 40px;
   margin-bottom: 12px;
-  background: linear-gradient(135deg, #6200ea, #bb86fc);
+  background: linear-gradient(135deg, #168484, #4db6ac);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -633,16 +633,16 @@
 
 .album-detail-card.all-photos p {
   font-size: 16px;
-  color: #999;
+  color: #94a3b8;
 }
 
 /* ALBUM SELECT DROPDOWN */
 .album-select {
   width: 100%;
   padding: 10px 14px;
-  background: #222;
-  color: #fff;
-  border: 1px solid #333;
+  background: #18222c;
+  color: #f1f5f9;
+  border: 1px solid #1e293b;
   border-radius: 6px;
   font-size: 13px;
   cursor: pointer;
@@ -650,17 +650,17 @@
 }
 
 .album-select:hover {
-  background: #2a2a2a;
-  border-color: #444;
+  background: #2a3b4c;
+  border-color: #334155;
 }
 
 .album-select:focus {
   outline: none;
-  border-color: #6200ea;
-  box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.2);
+  border-color: #168484;
+  box-shadow: 0 0 0 2px rgba(22, 132, 132, 0.2);
 }
 
 .album-select option {
-  background: #222;
-  color: #fff;
+  background: #18222c;
+  color: #f1f5f9;
 }

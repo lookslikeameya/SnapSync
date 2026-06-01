@@ -3,29 +3,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  background: #0f171e;
 }
 
 .auth-box {
   width: 380px;
-  background: #1c1c1c;
+  background: #18222c;
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  border: 1px solid #333;
+  border: 1px solid #1e293b;
 }
 
 .auth-box h2 {
   text-align: center;
   margin: 0 0 8px 0;
   font-size: 28px;
-  color: #fff;
+  color: #f1f5f9;
   font-weight: 600;
 }
 
 .auth-subtitle {
   text-align: center;
-  color: #888;
+  color: #94a3b8;
   font-size: 14px;
   margin-bottom: 28px;
   margin-top: 0;
@@ -37,7 +37,7 @@
 
 .form-group label {
   display: block;
-  color: #aaa;
+  color: #94a3b8;
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 8px;
@@ -48,10 +48,10 @@
 .form-group input {
   width: 100%;
   padding: 12px 14px;
-  background: #2a2a2a;
-  border: 1px solid #333;
+  background: #18222c;
+  border: 1px solid #1e293b;
   border-radius: 6px;
-  color: #fff;
+  color: #f1f5f9;
   font-size: 14px;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -59,22 +59,22 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #6200ea;
-  background: #2a2a2a;
-  box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.1);
+  border-color: #168484;
+  background: #18222c;
+  box-shadow: 0 0 0 3px rgba(22, 132, 132, 0.1);
 }
 
 .form-group input::placeholder {
-  color: #666;
+  color: #94a3b8;
 }
 
 .auth-button {
   width: 100%;
   padding: 12px;
   margin-top: 8px;
-  background: linear-gradient(135deg, #6200ea 0%, #5100d0 100%);
+  background: #168484;
   border: none;
-  color: #fff;
+  color: #f1f5f9;
   border-radius: 6px;
   cursor: pointer;
   font-size: 15px;
@@ -83,9 +83,9 @@
 }
 
 .auth-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, #5100d0 0%, #4000b0 100%);
+  background: #0e5959;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(98, 0, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(22, 132, 132, 0.3);
 }
 
 .auth-button:disabled {
@@ -96,19 +96,19 @@
 .auth-link {
   text-align: center;
   font-size: 13px;
-  color: #888;
+  color: #94a3b8;
   margin-top: 16px;
   margin-bottom: 0;
 }
 
 .auth-link a {
-  color: #6200ea;
+  color: #168484;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .auth-link a:hover {
-  color: #7c3aed;
+  color: #14b8a6;
   text-decoration: underline;
 }

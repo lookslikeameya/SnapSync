@@ -306,9 +306,9 @@ export default function Gallery() {
           width: 200,
           [`& .MuiDrawer-paper`]: {
             width: 200,
-            background: "#0f0f0f",
-            color: "#fff",
-            borderRight: "1px solid #222",
+            background: "#0f171e",
+            color: "#f1f5f9",
+            borderRight: "1px solid #1e293b",
             marginTop: "70px",
           },
         }}
@@ -390,9 +390,9 @@ export default function Gallery() {
                             day: 'numeric'
                           })}
                         </span>
-                        
+
                         <div style={{ marginTop: '15px' }}>
-                          <button 
+                          <button
                             className="load-more-btn"
                             onClick={() => window.location.href = `http://127.0.0.1:8000/api/albums/${selectedAlbum.album_id}/download_all/`}
                             title="Download all photos in this album as ZIP"
@@ -558,108 +558,108 @@ export default function Gallery() {
                     </div>
                   </div>
                   {(IsAdmin || IsPhotographer) && (
-                    /* TAG SOMEONE SECTION */ 
+                    /* TAG SOMEONE SECTION */
                     < div className="modal-section">
-                  <h4>Tag someone</h4>
-                  <select
-                    className="modal-select"
-                    value={selectedUser}
-                    onChange={(e) => setSelectedUser(e.target.value)}
-                  >
-                    <option value="">enter email address</option>
-                    {users.map((u) => (
-                      <option key={u.id} value={u.id}>
-                        {u.email}
-                      </option>
-                    ))}
-                  </select>
-                  <button
-                    className="modal-tag-btn"
-                    onClick={addUserTag}
-                    disabled={!selectedUser}
-                  >
-                    Tag
-                  </button>
-                </div>
-                      )}
-                {/* TAGS SECTION */}
-                <div className="modal-section">
-                  <h4>Tags</h4>
-                  <div className="tags">
-                    {selectedPhoto.tags?.length > 0 ? (
-                      selectedPhoto.tags.map(tag => (
-                        
-                        <span key={tag.id} className="tag">
-                          {tag.name}
-                          {(IsAdmin || IsPhotographer) && (
-                          <button onClick={() => removeTag(tag.name)}>×</button>)}
-                        </span>
-
-                      ))
-                    ) : (
-                      <p className="no-tags">No tags</p>
-                    )}
-                  </div>
-                  {(IsAdmin || IsPhotographer) && (
-                  <input
-                    className="modal-tag-input"
-                    placeholder="Add tag and press Enter"
-                    value={tagInput}
-                    onChange={(e) => setTagInput(e.target.value)}
-                    onKeyDown={handleTagKeyDown}
-                  />)}
-                </div>
-
-                {/* METADATA SECTION */}
-                {selectedPhoto.metadata && Object.keys(selectedPhoto.metadata).length > 0 && typeof selectedPhoto.metadata === 'object' && (
+                      <h4>Tag someone</h4>
+                      <select
+                        className="modal-select"
+                        value={selectedUser}
+                        onChange={(e) => setSelectedUser(e.target.value)}
+                      >
+                        <option value="">enter email address</option>
+                        {users.map((u) => (
+                          <option key={u.id} value={u.id}>
+                            {u.email}
+                          </option>
+                        ))}
+                      </select>
+                      <button
+                        className="modal-tag-btn"
+                        onClick={addUserTag}
+                        disabled={!selectedUser}
+                      >
+                        Tag
+                      </button>
+                    </div>
+                  )}
+                  {/* TAGS SECTION */}
                   <div className="modal-section">
-                    <h4>Photo Details</h4>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", fontSize: "14px", color: "#ddd" }}>
-                      {Object.entries(selectedPhoto.metadata).slice(0, 10).map(([key, value]) => (
-                        <div key={key}>
-                          <span style={{ fontWeight: "bold", color: "#aaa" }}>{key}: </span>
-                          <span>{value?.toString()?.substring(0, 30)}</span>
-                        </div>
-                      ))}
+                    <h4>Tags</h4>
+                    <div className="tags">
+                      {selectedPhoto.tags?.length > 0 ? (
+                        selectedPhoto.tags.map(tag => (
+
+                          <span key={tag.id} className="tag">
+                            {tag.name}
+                            {(IsAdmin || IsPhotographer) && (
+                              <button onClick={() => removeTag(tag.name)}>×</button>)}
+                          </span>
+
+                        ))
+                      ) : (
+                        <p className="no-tags">No tags</p>
+                      )}
+                    </div>
+                    {(IsAdmin || IsPhotographer) && (
+                      <input
+                        className="modal-tag-input"
+                        placeholder="Add tag and press Enter"
+                        value={tagInput}
+                        onChange={(e) => setTagInput(e.target.value)}
+                        onKeyDown={handleTagKeyDown}
+                      />)}
+                  </div>
+
+                  {/* METADATA SECTION */}
+                  {selectedPhoto.metadata && Object.keys(selectedPhoto.metadata).length > 0 && typeof selectedPhoto.metadata === 'object' && (
+                    <div className="modal-section">
+                      <h4>Photo Details</h4>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", fontSize: "14px", color: "#ddd" }}>
+                        {Object.entries(selectedPhoto.metadata).slice(0, 10).map(([key, value]) => (
+                          <div key={key}>
+                            <span style={{ fontWeight: "bold", color: "#aaa" }}>{key}: </span>
+                            <span>{value?.toString()?.substring(0, 30)}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* COMMENTS SECTION */}
+                  <div className="modal-section">
+                    <h4>Comments</h4>
+                    <div className="comments-list">
+                      {comments.length === 0 ? (
+                        <p className="no-comments">No comments yet</p>
+                      ) : (
+                        comments.map((comment) => (
+                          <div key={comment.id} className="comment">
+                            <strong>{comment.user}</strong>
+                            <p>{comment.content}</p>
+                            <span className="comment-time">
+                              {new Date(comment.created_at).toLocaleString()}
+                            </span>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                    <div className="comment-input-group">
+                      <input
+                        type="text"
+                        className="modal-comment-input"
+                        placeholder="Add a comment"
+                        value={commentInput}
+                        onChange={(e) => setCommentInput(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
+                      />
+                      <button
+                        className="modal-send-btn"
+                        onClick={handleAddComment}
+                      >
+                        Send
+                      </button>
                     </div>
                   </div>
-                )}
-
-                {/* COMMENTS SECTION */}
-                <div className="modal-section">
-                  <h4>Comments</h4>
-                  <div className="comments-list">
-                    {comments.length === 0 ? (
-                      <p className="no-comments">No comments yet</p>
-                    ) : (
-                      comments.map((comment) => (
-                        <div key={comment.id} className="comment">
-                          <strong>{comment.user}</strong>
-                          <p>{comment.content}</p>
-                          <span className="comment-time">
-                            {new Date(comment.created_at).toLocaleString()}
-                          </span>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                  <div className="comment-input-group">
-                    <input
-                      type="text"
-                      className="modal-comment-input"
-                      placeholder="Add a comment"
-                      value={commentInput}
-                      onChange={(e) => setCommentInput(e.target.value)}
-                      onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
-                    />
-                    <button
-                      className="modal-send-btn"
-                      onClick={handleAddComment}
-                    >
-                      Send
-                    </button>
-                  </div>
-                </div>
                 </div>
               </div>
             </div>

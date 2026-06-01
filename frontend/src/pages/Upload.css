@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 20px;
   padding-top: 90px;
-  background: #0f0f0f;
+  background: #0f171e;
   min-height: 100vh;
 }
 
@@ -14,8 +14,8 @@
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #1a1a1a;
-  border-bottom: 1px solid #333;
+  background-color: #18222c;
+  border-bottom: 1px solid #1e293b;
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -33,7 +33,7 @@
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #f1f5f9;
   margin: 0;
 }
 
@@ -44,7 +44,7 @@
 
 .navbar-btn {
   background: transparent;
-  color: #bbb;
+  color: #94a3b8;
   border: none;
   font-size: 14px;
   cursor: pointer;
@@ -55,23 +55,23 @@
 }
 
 .navbar-btn:hover {
-  color: #fff;
-  background-color: #333;
+  color: #f1f5f9;
+  background-color: #1e293b;
 }
 
 .navbar-btn.active {
-  color: #6200ea;
-  background-color: rgba(98, 0, 234, 0.1);
+  color: #168484;
+  background-color: rgba(22, 132, 132, 0.1);
 }
 
 .navbar-btn.logout-btn {
-  color: #ff6b6b;
-  background-color: rgba(255, 107, 107, 0.1);
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
 }
 
 .navbar-btn.logout-btn:hover {
-  color: #fff;
-  background-color: #ff6b6b;
+  color: #f1f5f9;
+  background-color: #ef4444;
 }
 
 /* DASHBOARD CARDS */
@@ -85,22 +85,22 @@
 }
 
 .card {
-  background: #151515;
+  background: #18222c;
   padding: 16px 20px;
   border-radius: 10px;
   min-width: 160px;
   text-align: center;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
 }
 
 .card-title {
-  color: #aaa;
+  color: #94a3b8;
   font-size: 13px;
   margin-bottom: 6px;
 }
 
 .card-value {
-  color: #fff;
+  color: #f1f5f9;
   font-size: 20px;
   font-weight: 700;
 }
@@ -116,62 +116,62 @@
 
 .upload-form {
   flex: 0 0 350px;
-  background: #1e1e1e;
+  background: #0f171e;
   padding: 24px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   height: fit-content;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
 }
 
 .upload-form h2 {
   margin: 0 0 8px 0;
   font-size: 18px;
-  color: #fff;
+  color: #f1f5f9;
 }
 
 .form-select,
 .form-input {
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #0f0f0f;
-  color: #fff;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #f1f5f9;
   font-size: 14px;
 }
 
 .form-select:focus,
 .form-input:focus {
   outline: none;
-  border-color: #6200ea;
-  background: #0f0f0f;
+  border-color: #168484;
+  background: #0f171e;
 }
 
 .drop-zone {
-  border: 2px dashed #333;
+  border: 2px dashed #1e293b;
   border-radius: 8px;
   padding: 20px;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: rgba(98, 0, 234, 0.05);
+  background: rgba(22, 132, 132, 0.05);
 }
 
 .drop-zone:hover {
-  border-color: #6200ea;
-  background: rgba(98, 0, 234, 0.1);
+  border-color: #168484;
+  background: rgba(22, 132, 132, 0.1);
 }
 
 .drop-zone.active {
-  border-color: #6200ea;
-  background: rgba(98, 0, 234, 0.15);
+  border-color: #168484;
+  background: rgba(22, 132, 132, 0.15);
 }
 
 .drop-zone p {
   margin: 0 0 10px 0;
-  color: #bbb;
+  color: #94a3b8;
   font-size: 14px;
 }
 
@@ -194,15 +194,15 @@
   height: 80px;
   object-fit: cover;
   border-radius: 6px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
 }
 
 .btn-primary {
   padding: 10px 16px;
   border-radius: 8px;
   border: none;
-  background: #6200ea;
-  color: white;
+  background: #168484;
+  color: #f1f5f9;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -210,7 +210,7 @@
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #7c3ade;
+  background: #0e5959;
 }
 
 .btn-primary:disabled {
@@ -221,7 +221,7 @@
 /* MY UPLOADS GRID */
 .my-uploads-section {
   flex: 1;
-  color: #fff;
+  color: #f1f5f9;
 }
 
 .my-uploads-section h2 {
@@ -236,16 +236,16 @@
 }
 
 .upload-card {
-  background: #1c1c1c;
+  background: #18222c;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
   transition: all 0.3s ease;
 }
 
 .upload-card:hover {
-  border-color: #6200ea;
-  box-shadow: 0 0 16px rgba(98, 0, 234, 0.2);
+  border-color: #168484;
+  box-shadow: 0 0 16px rgba(22, 132, 132, 0.2);
 }
 
 .upload-thumb {
@@ -258,7 +258,7 @@
 .upload-meta {
   margin-top: 8px;
   font-size: 13px;
-  color: #bbb;
+  color: #94a3b8;
   text-align: center;
 }
 
@@ -274,7 +274,7 @@
 }
 
 .modal-content {
-  background: #1b1b1b;
+  background: #18222c;
   border-radius: 16px;
   max-width: 1000px;
   width: 95%;
@@ -298,7 +298,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #0f0f0f;
+  background: #0f171e;
   border-radius: 12px;
   overflow: auto;
 }
@@ -322,34 +322,34 @@
   align-items: center;
   gap: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #1e293b;
   margin-bottom: 16px;
 }
 
 .action-btn {
   background: none;
   border: none;
-  color: #fff;
+  color: #f1f5f9;
   font-size: 30px;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .action-btn:hover {
-  color: #9c7edd;
+  color: #168484;
 }
 
 .favorite-btn.active {
-  color: #ff6b6b;
+  color: #ef4444;
 }
 
 .action-count {
-  color: #888;
+  color: #94a3b8;
   font-size: 14px;
 }
 
 .action-divider {
-  color: #999;
+  color: #94a3b8;
   font-size: 18px;
 }
 
@@ -365,7 +365,7 @@
 }
 
 .modal-scroll-content::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #1e293b;
   border-radius: 3px;
 }
 
@@ -382,7 +382,7 @@
   margin: 0 0 12px 0;
   font-size: 14px;
   font-weight: 600;
-  color: #ccc;
+  color: #94a3b8;
 }
 
 /* Select Field */
@@ -391,9 +391,9 @@
   padding: 10px 12px;
   margin-bottom: 8px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #888;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #94a3b8;
   font-size: 13px;
   cursor: pointer;
   outline: none;
@@ -401,12 +401,12 @@
 }
 
 .modal-select:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .modal-select option {
-  background: #1b1b1b;
-  color: #fff;
+  background: #18222c;
+  color: #f1f5f9;
 }
 
 /* Tag Button */
@@ -414,9 +414,9 @@
   width: 100%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #9c7edd;
-  background: #9c7edd;
-  color: #fff;
+  border: 1px solid #168484;
+  background: #168484;
+  color: #f1f5f9;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -424,8 +424,8 @@
 }
 
 .modal-tag-btn:hover:not(:disabled) {
-  background: #8a6cc9;
-  border-color: #8a6cc9;
+  background: #0e5959;
+  border-color: #0e5959;
 }
 
 .modal-tag-btn:disabled {
@@ -446,34 +446,34 @@
 }
 
 .comments-list::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #1e293b;
   border-radius: 2px;
 }
 
 .comment {
   padding: 8px 0;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #1e293b;
   margin-bottom: 8px;
 }
 
 .comment strong {
-  color: #9c7edd;
+  color: #168484;
   font-size: 12px;
 }
 
 .comment p {
   margin: 4px 0;
-  color: #ccc;
+  color: #94a3b8;
   font-size: 12px;
 }
 
 .comment-time {
   font-size: 11px;
-  color: #666;
+  color: #94a3b8;
 }
 
 .no-comments {
-  color: #666;
+  color: #94a3b8;
   font-size: 12px;
   margin: 0;
 }
@@ -488,24 +488,24 @@
   flex: 1;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #fff;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #f1f5f9;
   font-size: 12px;
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .modal-comment-input:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .modal-send-btn {
   padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid #9c7edd;
-  background: #9c7edd;
-  color: #fff;
+  border: 1px solid #168484;
+  background: #168484;
+  color: #f1f5f9;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -514,8 +514,8 @@
 }
 
 .modal-send-btn:hover {
-  background: #8a6cc9;
-  border-color: #8a6cc9;
+  background: #0e5959;
+  border-color: #0e5959;
 }
 
 /* Tags */
@@ -528,11 +528,11 @@
 }
 
 .tag {
-  background: #e8deff;
+  background: #134e4a;
   padding: 4px 10px;
   border-radius: 16px;
   font-size: 11px;
-  color: #333;
+  color: #f1f5f9;
   font-weight: 500;
   display: inline-flex;
   align-items: center;
@@ -542,7 +542,7 @@
 .tag button {
   background: none;
   border: none;
-  color: #333;
+  color: #f1f5f9;
   cursor: pointer;
   padding: 0;
   font-size: 14px;
@@ -554,7 +554,7 @@
 }
 
 .no-tags {
-  color: #666;
+  color: #94a3b8;
   font-size: 12px;
   margin: 0;
 }
@@ -564,37 +564,37 @@
   width: 100%;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #fff;
+  border: 1px solid #1e293b;
+  background: #0f171e;
+  color: #f1f5f9;
   font-size: 12px;
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .modal-tag-input:focus {
-  border-color: #9c7edd;
+  border-color: #168484;
 }
 
 .comments-list {
   max-height: 200px;
   overflow-y: auto;
-  background: #0f0f0f;
+  background: #0f171e;
   padding: 8px;
   border-radius: 6px;
   margin-bottom: 8px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid #1e293b;
 }
 
 .comment-item {
   margin-bottom: 8px;
   font-size: 12px;
-  color: #bbb;
+  color: #94a3b8;
   line-height: 1.4;
 }
 
 .comment-item strong {
-  color: #6200ea;
+  color: #168484;
 }
 
 .btn-favorite {

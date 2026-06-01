@@ -3,7 +3,7 @@
     margin: 40px auto;
   margin-top: 110px;
   padding: 20px;
-  background-color: #1a1a1a;
+  background-color: #18222c;
   border-radius: 8px;
 }
 
@@ -14,8 +14,8 @@
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #1a1a1a;
-  border-bottom: 1px solid #333;
+  background-color: #18222c;
+  border-bottom: 1px solid #1e293b;
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -33,7 +33,7 @@
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #f1f5f9;
   margin: 0;
 }
 
@@ -44,7 +44,7 @@
 
 .navbar-btn {
   background: transparent;
-  color: #bbb;
+  color: #94a3b8;
   border: none;
   font-size: 14px;
   cursor: pointer;
@@ -55,27 +55,27 @@
 }
 
 .navbar-btn:hover {
-  color: #fff;
-  background-color: #333;
+  color: #f1f5f9;
+  background-color: #1e293b;
 }
 
 .navbar-btn.active {
-  color: #6200ea;
-  background-color: rgba(98, 0, 234, 0.1);
+  color: #168484;
+  background-color: rgba(22, 132, 132, 0.1);
 }
 
 .navbar-btn.logout-btn {
-  color: #ff6b6b;
-  background-color: rgba(255, 107, 107, 0.1);
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
 }
 
 .navbar-btn.logout-btn:hover {
-  color: #fff;
-  background-color: #ff6b6b;
+  color: #f1f5f9;
+  background-color: #ef4444;
 }
 
 .profile-card {
-    background-color: #2a2a2a;
+    background-color: #0f171e;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -83,7 +83,7 @@
 
 
 .profile-card h2 {
-    color: #ffffff;
+    color: #f1f5f9;
     margin-bottom: 30px;
     text-align: center;
     font-size: 28px;
@@ -96,7 +96,7 @@
 .profile-field {
     margin-bottom: 25px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #3a3a3a;
+    border-bottom: 1px solid #1e293b;
 }
 
 .profile-field:last-of-type {
@@ -105,7 +105,7 @@
 
 .profile-field label {
     display: block;
-    color: #888;
+    color: #94a3b8;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 8px;
@@ -114,7 +114,7 @@
 }
 
 .profile-field p {
-    color: #ffffff;
+    color: #f1f5f9;
     font-size: 16px;
     margin: 0;
 }
@@ -127,8 +127,8 @@
 
 .role-badge {
     display: inline-block;
-    background-color: #5a5a5a;
-    color: #ffffff;
+    background-color: #134e4a;
+    color: #f1f5f9;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 14px;
@@ -143,8 +143,8 @@
 
 .profile-actions button {
     padding: 12px 24px;
-    background-color: #6200ea;
-    color: white;
+    background-color: #168484;
+    color: #f1f5f9;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -154,5 +154,5 @@
 }
 
 .profile-actions button:hover {
-    background-color: #5100d0;
+    background-color: #0e5959;
 }

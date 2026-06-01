@@ -5,8 +5,8 @@
 .albums-container {
   padding: 28px;
   padding-top: 100px;
-  color: #fff;
-  background: #0f0f0f;
+  color: #f1f5f9;
+  background: #0f171e;
   min-height: 100vh;
 }
 
@@ -17,8 +17,8 @@
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #1a1a1a;
-  border-bottom: 1px solid #333;
+  background-color: #18222c;
+  border-bottom: 1px solid #1e293b;
   z-index: 1100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -36,7 +36,7 @@
 .navbar-logo {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #f1f5f9;
   margin: 0;
 }
 
@@ -47,7 +47,7 @@
 
 .navbar-btn {
   background: transparent;
-  color: #bbb;
+  color: #94a3b8;
   border: none;
   font-size: 14px;
   cursor: pointer;
@@ -58,13 +58,13 @@
 }
 
 .navbar-btn:hover {
-  color: #fff;
-  background-color: #333;
+  color: #f1f5f9;
+  background-color: #1e293b;
 }
 
 .navbar-btn.active {
-  color: #6200ea;
-  background-color: rgba(98, 0, 234, 0.1);
+  color: #168484;
+  background-color: rgba(22, 132, 132, 0.1);
 }
 
 .navbar-btn.logout-btn {
@@ -73,7 +73,7 @@
 }
 
 .navbar-btn.logout-btn:hover {
-  color: #fff;
+  color: #f1f5f9;
   background-color: #ff6b6b;
 }
 
@@ -87,8 +87,8 @@
 ========================= */
 
 .create-album-card {
-  background: #161616;
-  border: 1px solid #2a2a2a;
+  background: #18222c;
+  border: 1px solid #18222c;
   border-radius: 16px;
   padding: 24px;
   margin-bottom: 36px;
@@ -122,9 +122,9 @@
 .create-album-card select {
   width: 100%;
   padding: 10px 12px;
-  background: #0f0f0f;
-  color: #fff;
-  border: 1px solid #2a2a2a;
+  background: #0f171e;
+  color: #f1f5f9;
+  border: 1px solid #18222c;
   border-radius: 8px;
 }
 
@@ -137,7 +137,7 @@
 /* Labels */
 .create-album-card label {
   font-size: 13px;
-  color: #aaa;
+  color: #94a3b8;
 }
 
 /* Coordinators should span full width */
@@ -152,7 +152,7 @@
   justify-self: end;
 
   padding: 10px 18px;
-  background: #4f46e5;
+  background: #168484;
   border: none;
   border-radius: 8px;
   color: white;
@@ -160,7 +160,7 @@
 }
 
 .create-album-card button:hover {
-  background: #4338ca;
+  background: #0e5959;
 }
 /* =========================
    ALBUM GRID
@@ -177,7 +177,7 @@
 ========================= */
 
 .album-card {
-  background: #1c1c1c;
+  background: #18222c;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
@@ -212,13 +212,13 @@
 
 .album-info p {
   font-size: 13px;
-  color: #b5b5b5;
+  color: #94a3b8;
   margin-bottom: 8px;
 }
 
 .album-date {
   font-size: 12px;
-  color: #888;
+  color: #94a3b8;
 }
 
 /* =========================

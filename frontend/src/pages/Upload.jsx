@@ -526,29 +526,29 @@ function Upload() {
                                         </div>
                                     </div>
                                     
-                                        {/* TAG SOMEONE SECTION */}
-                                        < div className="modal-section">
-                                            <h4>Tag someone</h4>
-                                            <select
-                                                className="modal-select"
-                                                value={selectedUser}
-                                                onChange={(e) => setSelectedUser(e.target.value)}
-                                            >
-                                                <option value="">enter email address</option>
-                                                {users.map((u) => (
-                                                    <option key={u.id} value={u.id}>
-                                                        {u.email}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <button
-                                                className="modal-tag-btn"
-                                                onClick={addUserTag}
-                                                disabled={!selectedUser}
-                                            >
-                                                Tag
-                                            </button>
-                                        </div>
+                                    {/* TAG SOMEONE SECTION */}
+                                    <div className="modal-section">
+                                        <h4>Tag someone</h4>
+                                        <select
+                                            className="modal-select"
+                                            value={selectedUser}
+                                            onChange={(e) => setSelectedUser(e.target.value)}
+                                        >
+                                            <option value="">enter email address</option>
+                                            {users.map((u) => (
+                                                <option key={u.id} value={u.id}>
+                                                    {u.email}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <button
+                                            className="modal-tag-btn"
+                                            onClick={addUserTag}
+                                            disabled={!selectedUser}
+                                        >
+                                            Tag
+                                        </button>
+                                    </div>
                                     
                                     {/* TAGS SECTION */}
                                     <div className="modal-section">
@@ -556,27 +556,38 @@ function Upload() {
                                         <div className="tags">
                                             {selectedPhoto.tags?.length > 0 ? (
                                                 selectedPhoto.tags.map(tag => (
-
                                                     <span key={tag.id} className="tag">
                                                         {tag.name}
-                                                        
-                                                            <button onClick={() => removeTag(tag.name)}>×</button>
+                                                        <button onClick={() => removeTag(tag.name)}>×</button>
                                                     </span>
-
                                                 ))
                                             ) : (
                                                 <p className="no-tags">No tags</p>
                                             )}
                                         </div>
-                                        
-                                            <input
-                                                className="modal-tag-input"
-                                                placeholder="Add tag and press Enter"
-                                                value={tagInput}
-                                                onChange={(e) => setTagInput(e.target.value)}
-                                                onKeyDown={handleTagKeyDown}
-                                            />
+                                        <input
+                                            className="modal-tag-input"
+                                            placeholder="Add tag and press Enter"
+                                            value={tagInput}
+                                            onChange={(e) => setTagInput(e.target.value)}
+                                            onKeyDown={handleTagKeyDown}
+                                        />
                                     </div>
+
+                                    {/* METADATA SECTION */}
+                                    {selectedPhoto.metadata && Object.keys(selectedPhoto.metadata).length > 0 && typeof selectedPhoto.metadata === 'object' && (
+                                        <div className="modal-section">
+                                            <h4>Photo Details</h4>
+                                            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", fontSize: "14px", color: "#ddd" }}>
+                                                {Object.entries(selectedPhoto.metadata).slice(0, 10).map(([key, value]) => (
+                                                    <div key={key}>
+                                                        <span style={{ fontWeight: "bold", color: "#aaa" }}>{key}: </span>
+                                                        <span>{value?.toString()?.substring(0, 30)}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
 
                                     {/* COMMENTS SECTION */}
                                     <div className="modal-section">
@@ -613,10 +624,6 @@ function Upload() {
                                             </button>
                                         </div>
                                     </div>
-
-
-
-
                                 </div>
                             </div>
                         </div>

@@ -11,11 +11,11 @@
 
 | Authentication | Home Gallery Feed | Event Albums |
 | :--- | :--- | :--- |
-| **Auth Flow**<br>Log in securely via Email OTP or Omniport OAuth | **Smooth Masonry Grid**<br>Pinterest-style progressive loading galleries | **Albums Hub**<br>Organize and browse curated event collections |
+| <img src="frontend/public/login.png" width="250" /><br><img src="frontend/public/auth.png" width="250" /><br><img src="frontend/public/otp.png" width="250" /><br>**Auth Flow**<br>Log in securely via Email OTP or Omniport OAuth | <img src="frontend/public/gallery.png" width="250" /><br>**Smooth Masonry Grid**<br>Pinterest-style progressive loading galleries | <img src="frontend/public/album.png" width="250" /><br>**Albums Hub**<br>Organize and browse curated event collections |
 
 | Interactive Photo Detail | Real-time Updates | Photographer Dashboard |
 | :--- | :--- | :--- |
-| **Lightbox Modal**<br>View full-res, tag users, and nest comments | **Notifications**<br>Live alerts for tags and favorites | **Upload Flow**<br>Batch processing, watermarks, and auto-tagging |
+| <img src="frontend/public/modal.png" width="250" /><br>**Lightbox Modal**<br>View full-res, tag users, and nest comments | <img src="frontend/public/profile.png" width="250" /><br>**Notifications**<br>Live alerts for tags and favorites | <img src="frontend/public/photographer%20dashboard.png" width="250" /><br>**Upload Flow**<br>Batch processing, watermarks, and auto-tagging |
 
 ---
 
